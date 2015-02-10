@@ -19,6 +19,9 @@ module WithEmbeddedAssetsRailsTest
     config.active_support.deprecation = :stderr
     config.assets.enabled = true
     config.assets.paths = ASSETS_PATHS
+    config.eager_load = false
+    config.active_support.test_order = :sorted
+    config.secret_key_base = 'idontcare'
   end
 end
 

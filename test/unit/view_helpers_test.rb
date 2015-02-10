@@ -17,7 +17,7 @@ class ViewHelpersTest < ActionView::TestCase
 
   test "javascript_include_tag with embedding enabled passing parameters" do
     WithEmbeddedAssets.enabled = true
-    expected_result = "<script data-test=\"foobar\" type=\"text/javascript\">" +
+    expected_result = "<script type=\"text/javascript\" data-test=\"foobar\">" +
       File.open("#{FIXTURE_PATH}/javascripts/test.js", 'r') {|f| f.read } +
     ";\n</script>"
     assert_equal expected_result, javascript_include_tag(:test, :"data-test" => "foobar")
@@ -35,7 +35,7 @@ class ViewHelpersTest < ActionView::TestCase
 
   test "javascript_include_tag with embedding disabled" do
     WithEmbeddedAssets.enabled = false
-    expected_result = "<script src=\"/javascripts/test.js\" type=\"text/javascript\"></script>"
+    expected_result = "<script src=\"/javascripts/test.js\"></script>"
     assert_equal expected_result, javascript_include_tag("test")
   end
 
@@ -67,7 +67,7 @@ class ViewHelpersTest < ActionView::TestCase
 
   test "stylesheet_link_tag with embedding disabled" do
     WithEmbeddedAssets.enabled = false
-    expected_result = "<link href=\"/stylesheets/test.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />"
+    expected_result = "<link rel=\"stylesheet\" media=\"screen\" href=\"/stylesheets/test.css\" />"
     assert_equal expected_result, stylesheet_link_tag("test")
   end
 end
